@@ -78,13 +78,11 @@ class Matrix:
 
     def shape_check(self, other):
         if isinstance(other, Vector):
-            if self.shape()[0] != other.shape():
+            if self.shape()[1] != other.shape():
                 return self.shape_rule()
         if isinstance(other, self.__class__):
             if self.shape() != other.shape():
                 return self.shape_rule()
-
-
 
     def shape(self):
         column = len(self.matrix1)
@@ -113,3 +111,22 @@ class Matrix:
                 new_row.append(self.matrix1[pos][posi] - other.matrix1[pos][posi])
             new_matrix.append(new_row)
         return new_matrix
+
+    def __mul__(self, other):
+        self.shape_check(other)
+        if isinstance(other, int):
+            new_matrix = []
+            for pos in range(len(self.column(0))):
+                new_row = []
+                for posi in range(len(self.row(0))):
+                    new_row.append(self.matrix1[pos][posi] * other)
+                new_matrix.append(new_row)
+            return new_matrix
+        if isinstance(other, Vector):
+            new_vec = []
+            for row in self.matrix1:
+                number = 0
+                for pos in range(len(self.row(0))):
+                    number += (other.vector1[pos] * row[pos])
+                new_vec.append(number)
+            return new_vec
