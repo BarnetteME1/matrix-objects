@@ -1,5 +1,6 @@
 from functools import reduce
 
+
 class Vector:
 
     def __init__(self, vector1):
@@ -8,6 +9,7 @@ class Vector:
     def __str__(self):
         return "{}".format(self.vector1)
 
+    #@property (make changes with this)
     def shape(self):
         return len(self.vector1)
 
@@ -46,7 +48,6 @@ class Vector:
             new_vector.append(self.vector1[pos] * other.vector1[pos])
         return reduce(lambda x, y: x + y, new_vector)
 
-
     def magnitude(self):
         scalar = 0
         vector_len = len(self.vector1)
@@ -84,6 +85,7 @@ class Matrix:
             if self.shape() != other.shape():
                 return self.shape_rule()
 
+    #@property (make changes with this)
     def shape(self):
         column = len(self.matrix1)
         row = len(self.matrix1[0])
@@ -130,3 +132,7 @@ class Matrix:
                     number += (other.vector1[pos] * row[pos])
                 new_vec.append(number)
             return new_vec
+
+"""Make Matrix a sub-class of vector, make vector a sub-class of list. Do more
+with @property. Use my definitions within one another to simplify the
+definitions. Use Super to make things like the shape check better."""
