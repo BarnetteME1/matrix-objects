@@ -9,6 +9,9 @@ class Vector:
     def __str__(self):
         return "{}".format(self.vector1)
 
+    def __repr__(self):
+        return self.vector1
+
     #@property (make changes with this)
     def shape(self):
         return len(self.vector1)
